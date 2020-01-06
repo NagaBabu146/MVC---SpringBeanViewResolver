@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<!-- cfg Handler Mapping -->
+	<bean id="suhl"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="home.htm">pvc</prop>
+                <prop key="report.htm">erc</prop>
+			</props>
+		</property>
+	</bean>
+	
+		<!-- cfg Controllers-->
+		<bean id="pvc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="welcome"></property>
+		</bean>
+		
+		<bean id="erc" class="com.nt.controller.EmployeeReportController"/>
+		
+		<!-- cfg view class -->
+		<bean id="pdfView" class="com.nt.views.EmployeePdfView"/>
+		<bean id="excelView" class="com.nt.views.EmployeeExcelView"/>
+		
+
+	<!-- cfg ViewResolver -->
+	  <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	  
+	 <bean id="vr"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+</beans>
